@@ -1,36 +1,7 @@
-use std::{char::MAX, u32};
-
 use::aoc_helper::{AocDay, Puzzle};
 
 fn part_one(input: String) -> i32 {
     let mut answer: i32 = 0;
-    for text in input.split("\n") {
-        let mut first_number: u32 = MAX as u32;
-        let mut last_number: u32 = MAX as u32;
-        for number in text.chars() {
-            if number.is_numeric() {
-                if first_number == MAX as u32 {
-                    first_number = match number.to_string().parse::<u32>() {
-                        Ok(num) => { num },
-                        Err(_) => { last_number },
-                    };
-                }
-                last_number = match number.to_string().parse::<u32>() {
-                    Ok(num) => { num },
-                    Err(_) => { last_number },
-                };
-            }
-        }
-        let digit = format!("{first_number}{last_number}");
-        answer += match digit.parse::<i32>() {
-            Ok(number) => { number },
-            Err(_) => { 
-                println!("{digit}");
-                0
-            },
-        };
-    }
-
     return answer;
 }
 
